@@ -7,12 +7,12 @@
 * B6016357	นายไตรรงค์ บำรุงเกตุอุดม
 
 ****
-#####First install before to run
+##### First install before to run
 1. npm install
 2. npm install bootstrap jquery popper.js
 3. npm install @angular/http
 
-####RUN
+#### RUN
 1. client
 **ng serve -o**
 2. backend
