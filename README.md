@@ -7,6 +7,7 @@
 * B6016357	นายไตรรงค์ บำรุงเกตุอุดม
 
 ****
+### Frontend: AngularJS, Backend: NodeJS Express, Database: MogoDB
 ##### First install before to run
 1. npm install
 2. npm install bootstrap jquery popper.js
