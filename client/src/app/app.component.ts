@@ -17,4 +17,8 @@ export class AppComponent implements OnInit{
     this.id = data.id; this.name = data.name; 
     }) 
   }
+
+  getUrl() {
+    return "url('https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/pxl_beeld_geselecteerd.jpg')";
+  }
 }

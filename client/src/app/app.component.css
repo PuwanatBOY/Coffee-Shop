@@ -1,0 +1,5 @@
+.bg {
+    background: url(../assets/image/main.jpg);
+    height: 700px;
+    background-size: contain;
+}
