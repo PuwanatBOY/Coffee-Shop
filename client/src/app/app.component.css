@@ -1,4 +1,4 @@
-.bg {
+/* .bg {
     background: url(../assets/image/main.jpg);
     filter: blur(8px);
     -webkit-filter: blur(8px);
@@ -6,7 +6,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 
 .bg-text {
     background-color: rgb(0, 0, 0);
