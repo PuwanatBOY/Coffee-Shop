@@ -11,7 +11,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 50%;
+    width: 40%;
     padding: 20px;
     text-align: center;
 }
@@ -33,4 +33,15 @@
 .text-center {
     text-align: center;
     word-spacing: 10pt;
+}
+
+.bg {
+    background: url(/../../assets/image/main.jpg);
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 695px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1500px 700px;
 }
