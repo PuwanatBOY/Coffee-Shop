@@ -15,14 +15,13 @@
 3. npm install @angular/http
 
 #### backend
-* npm i express
-* npm i nodemon -g --save-dev
-* npm install express mongoose body-parser cors --save
+1. npm i nodemon -g --save-dev
+2. npm install express mongoose body-parser cors --save
 
 #### mongoDB
-in CMD run
-* mongod 
-* Use serve: mongodb://localhost:27017/register
+in CMD for start server MongoDB
+1. mongod 
+* **Use serve: mongodb://localhost:27017/register**
 
 ### RUN
 * **Start client**
