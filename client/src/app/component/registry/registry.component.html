@@ -42,7 +42,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" formControlName='email' placeholder="example@example.com">
+                            <input type="email" class="form-control" formControlName='email' placeholder="name@example.com">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password</label>
@@ -57,31 +57,44 @@
                             </div>
                         </div>
                     </div>
-
-                    <div formGroupName="address">
-                        <div class="form-group">
-                            <label for="street">Address</label>
-                            <textarea class="form-control" formControlName='street' placeholder="1234 Main St" rows="3"></textarea>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="tel">Tel.</label>
+                            <input type="text" class="form-control" formControlName='tel' placeholder="0xx-xxxxxxx">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="city">City</label>
-                                <input type="text" class="form-control" formControlName='city'>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="state">State</label>
-                                <select class="form-control" formControlName='state'>
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="zip">Zip</label>
-                                <input type="text" class="form-control" formControlName='zip'>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div formGroupName="address">
+                                <h5>ที่อยู่</h5>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="street">บ้านเลขที่, หมู่ที่</label>
+                                        <input class="form-control" formControlName='Hnum' placeholder="บ้านเลขที่ 1 หมู่ 1">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="parish">ตำบล/แขวง</label>
+                                        <input type="text" class="form-control" formControlName='parish'>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="district">อำเภอ</label>
+                                        <input class="form-control" formControlName='district'>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="province">จังหวัด</label>
+                                        <input class="form-control" formControlName='province'>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="zip">รหัสไปรษณีย์</label>
+                                        <input type="text" class="form-control" formControlName='zip'>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    <br/>
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" name="check" type="checkbox" value="false" formControlName='check'>
@@ -91,7 +104,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button (click)="saveRegister()" type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 <br/>
                 <div class="card">

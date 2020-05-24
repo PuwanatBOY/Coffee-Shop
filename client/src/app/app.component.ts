@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  constructor(private http: HttpClient) { } 
+  constructor() { } 
   
   id:string; 
   name:string;
   
   ngOnInit() { 
-    this.http.get<any>('http://localhost:3000/api/resource').subscribe(data => { 
-    this.id = data.id; this.name = data.name; 
-    }) 
   }
 }

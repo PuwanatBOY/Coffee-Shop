@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { RegisterService } from 'src/app/service/register.service';
 
 @Component({
   selector: 'app-registry',
@@ -18,10 +18,12 @@ export class RegistryComponent implements OnInit {
     sex: new FormControl(''),
     check: new FormControl(''),
     email: new FormControl('',[Validators.required, Validators.email]),
+    tel: new FormControl('',[Validators.required, Validators.min(10)]),
     address: new FormGroup({ 
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
+      Hnum:new FormControl(''),
+      province: new FormControl(''),
+      parish: new FormControl(''),
+      district: new FormControl(''),
       zip: new FormControl('')
     })
   });
@@ -29,9 +31,51 @@ export class RegistryComponent implements OnInit {
   get email(){ return this.registerForm.get('email'); }
   get password(){ return this.registerForm.get('password'); }
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
-  ngOnInit(): void {
-  }
+  submitted = false;
+
+  ngOnInit(): void { }
+
+  saveRegister() {
+    if(this.registerForm.value.check == true){
+    const data = {
+      firstName: this.registerForm.value.firstName,
+      lastName: this.registerForm.value.lastName,
+      password: this.registerForm.value.password,
+      username: this.registerForm.value.username,
+      sex: this.registerForm.value.sex,
+      check: this.registerForm.value.check,
+      email: this.registerForm.value.email,
+      tel: this.registerForm.value.tel,
+      Hnum: this.registerForm.value.address.Hnum,
+      district: this.registerForm.value.address.district,
+      province: this.registerForm.value.address.province,
+      parish: this.registerForm.value.address.parish,
+      zip: this.registerForm.value.address.zip,
+    };
+    console.log(data);
+    this.registerService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        });
+      }else {
+        alert("No Confrim");
+      }
+  } 
+
+  // newTutorial() {
+  //   this.submitted = false;
+  //   this.tutorial = {
+  //     title: '',
+  //     description: '',
+  //     published: false
+  //   };
+  // }
 
 }
