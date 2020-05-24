@@ -1,20 +1,31 @@
 # Phone-Shop
 ##  Project Subject 523419	ADVANCED WEB APPLICATION DEVELOPMENT
-### GROUP 13
+### USE => Frontend: AngularJS, Backend: NodeJS Express, Database: MogoDB
+#### GROUP 13
 * B6000035	นางสาวอริสา รังกลาง
 * B6004804	นายภูวนาท ต่อชีวี
 * B6010768	นายปิยะพงษ์ กิตติชัยวัฒนา
 * B6016357	นายไตรรงค์ บำรุงเกตุอุดม
 
 ****
-### Frontend: AngularJS, Backend: NodeJS Express, Database: MogoDB
-##### First install before to run
+### First install before to run
+#### client
 1. npm install
 2. npm install bootstrap jquery popper.js
 3. npm install @angular/http
 
-#### RUN
-1. client
-**ng serve -o**
-2. backend
-**node app.js**
+#### backend
+* npm i express
+* npm i nodemon -g --save-dev
+* npm install express mongoose body-parser cors --save
+
+#### mongoDB
+in CMD run
+* mongod 
+* Use serve: mongodb://localhost:27017/register
+
+### RUN
+* **Start client**
+  * **ng serve -o**
+* **Start backend**
+  * **node app.js**
