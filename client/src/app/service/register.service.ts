@@ -34,7 +34,7 @@ export class RegisterService {
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(title) {
-    return this.http.get(`${baseUrl}?title=${title}`);
+  findByUser(username,password) {
+    return this.http.get(`${baseUrl}?username=${username}&password=${password}`);
   }
 }

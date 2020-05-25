@@ -60,6 +60,7 @@ export class RegistryComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
+          alert("Save Success!")
         },
         error => {
           console.log(error);
