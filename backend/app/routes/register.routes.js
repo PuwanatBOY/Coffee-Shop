@@ -13,7 +13,7 @@ module.exports = app => {
     router.get("/published", register.findAllPublished);
 
     // Retrieve a single Tutorial with id
-    router.get("/:username/:password", register.findOne);
+    router.get("/:username/:password", register.findUsername);
 
     // Update a Tutorial with id
     router.put("/:id", register.update);

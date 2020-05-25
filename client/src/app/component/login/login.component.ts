@@ -36,18 +36,19 @@ export class LoginComponent implements OnInit {
       password: this.dataLogin.value.password,
       username: this.dataLogin.value.username,
     };
-    console.log(data);
-    this.registerService.findByUser(data.username, data.password)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.loginPass = true;
-          alert("i see!");
-          this.router.navigate(['/addlist']);
-        },
-        error => {
-          console.log(error);
-        });
+    if(data.password !== '' && data.username !== '') {
+      this.registerService.findByUser(data.username, data.password)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.loginPass = true;
+            alert("i see!");
+            this.router.navigate(['/addlist']);
+          },
+          error => {
+            console.log(error);
+          });
   }
+}
 
 }

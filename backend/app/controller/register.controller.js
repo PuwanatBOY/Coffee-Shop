@@ -57,14 +57,17 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Register with an id
-exports.findOne = (req, res) => {
-    const id = req.params.id;
-
-    Register.findById(id)
+exports.findUsername = (req, res) => {
+    const dataObj = {
+            username: req.params.username.split(":"),
+            password: req.params.password.split(":")
+        }
+        //console.log("Here " + dataObj.username + ", " + dataObj.password);
+    Register.find({ username: dataObj.username, password: dataObj.password })
         .then(data => {
             if (!data)
                 res.status(404).send({ message: "Not found Register with id " + id });
-            else res.send(data);
+            else res.send({ username: dataObj.username, password: dataObj.password });
         })
         .catch(err => {
             res

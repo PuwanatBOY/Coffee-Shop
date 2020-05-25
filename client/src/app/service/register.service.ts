@@ -34,7 +34,8 @@ export class RegisterService {
     return this.http.delete(baseUrl);
   }
 
-  findByUser(username,password) {
-    return this.http.get(`${baseUrl}?username=${username}&password=${password}`);
+  findByUser(username, password) {
+    console.log(username+", "+password);
+    return this.http.get(`${baseUrl}/${username}/${password}`);
   }
 }
