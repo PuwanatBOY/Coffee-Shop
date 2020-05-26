@@ -7,6 +7,14 @@ var corsOptions = {
     origin: "http://localhost:4200"
 };
 
+// expressApp.use(function(req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+//     res.setHeader('Access-Control-Allow-Methods', 'POST');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next();
+// });
+
 expressApp.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -31,4 +39,5 @@ db.mongoose
     });
 
 require("./app/routes/register.routes")(expressApp);
+require("./app/routes/addlist.routes")(expressApp);
 expressApp.listen(3000, function() { console.log('Listening on port 3000'); });

@@ -7,5 +7,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.register = require("./register.model.js")(mongoose);
+db.addlist = require("./addlist.model.js")(mongoose);
 
 module.exports = db;
