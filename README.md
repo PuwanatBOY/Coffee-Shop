@@ -13,6 +13,7 @@
 1. npm install
 2. npm install bootstrap jquery popper.js
 3. npm install @angular/http
+4. ng add @fortawesome/angular-fontawesome
 
 #### backend
 1. npm i nodemon -g --save-dev
