@@ -22,7 +22,7 @@
 #### mongoDB
 in CMD for start server MongoDB
 1. mongod 
-* **Use serve: mongodb://localhost:27017/register**
+* **Use serve: mongodb://localhost:27017/PhoneShop**
 
 ### RUN
 * **Start client**
