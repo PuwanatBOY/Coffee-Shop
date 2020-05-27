@@ -11,10 +11,14 @@ import { RegistryComponent } from './component/registry/registry.component';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddListComponent } from './component/add-list/add-list.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ProductListComponent } from './component/product-list/product-list.component';
 =======
 import { EmployeeLoginComponent } from './component/employee-login/employee-login.component';
 >>>>>>> close #12 -add login employee
+=======
+import { EmployeeLoginComponent } from './component/employee-login/employee-login.component';
+>>>>>>> issue-12
 
 @NgModule({
   declarations: [
@@ -23,10 +27,14 @@ import { EmployeeLoginComponent } from './component/employee-login/employee-logi
     RegistryComponent,
     AddListComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     ProductListComponent
 =======
     EmployeeLoginComponent
 >>>>>>> close #12 -add login employee
+=======
+    EmployeeLoginComponent
+>>>>>>> issue-12
   ],
   imports: [
     BrowserModule,

@@ -27,10 +27,14 @@
                             "src/styles.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
 <<<<<<< HEAD
+<<<<<<< HEAD
                             "node_modules/font-awesome/css/font-awesome.css" 
 =======
                             "node_modules/font-awesome/css/font-awesome.css"
 >>>>>>> close #12 -add login employee
+=======
+                            "node_modules/font-awesome/css/font-awesome.css"
+>>>>>>> issue-12
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
