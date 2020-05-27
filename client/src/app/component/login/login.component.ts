@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/service/register.service';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private registerService: RegisterService,private router: Router) { }
+  constructor(private registerService: RegisterService) { }
 
   loginPass: Boolean = false;
 
@@ -43,7 +42,6 @@ export class LoginComponent implements OnInit {
             console.log(response);
             this.loginPass = true;
             alert("i see!");
-            this.router.navigate(['/addlist']);
           },
           error => {
             console.log(error);
