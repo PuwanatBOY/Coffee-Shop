@@ -123,31 +123,3 @@ exports.delete = (req, res) => {
             });
         });
 };
-
-// Delete all Register from the database.
-exports.deleteAll = (req, res) => {
-    Register.deleteMany({})
-        .then(data => {
-            res.send({
-                message: `${data.deletedCount} Register were deleted successfully!`
-            });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while removing all Register."
-            });
-        });
-};
-
-// Find all published Register
-exports.findAllPublished = (req, res) => {
-    Register.find({ published: true })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving Register."
-            });
-        });
-};

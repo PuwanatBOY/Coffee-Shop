@@ -8,5 +8,6 @@ db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.register = require("./register.model.js")(mongoose);
 db.addlist = require("./addlist.model.js")(mongoose);
+db.employee = require("./employee.model.js")(mongoose);
 
 module.exports = db;

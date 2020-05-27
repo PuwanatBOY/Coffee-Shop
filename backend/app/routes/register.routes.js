@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all Tutorials
     router.get("/", register.findAll);
 
-    // Retrieve all published Tutorials
-    router.get("/published", register.findAllPublished);
-
     // Retrieve a single Tutorial with id
     router.get("/:username/:password", register.findUsername);
 
@@ -20,9 +17,6 @@ module.exports = app => {
 
     // Delete a Tutorial with id
     router.delete("/:id", register.delete);
-
-    // Create a new Tutorial
-    router.delete("/", register.deleteAll);
 
     app.use('/api/register', router);
 };
