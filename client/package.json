@@ -23,17 +23,8 @@
         "@fortawesome/angular-fontawesome": "^0.6.1",
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
         "bootstrap": "^4.5.0",
-=======
         "angular-font-awesome": "^3.1.2",
-        "bootstrap": "^4.4.1",
->>>>>>> close #12 -add login employee
-=======
-        "angular-font-awesome": "^3.1.2",
-        "bootstrap": "^4.4.1",
->>>>>>> issue-12
         "font-awesome": "^4.7.0",
         "jquery": "^3.5.1",
         "mdbootstrap": "^4.18.0",
