@@ -35,6 +35,8 @@ export class EmployeeLoginComponent implements OnInit {
           response => {
             console.log(response);
             this.loginPass = true;
+            localStorage.setItem("username",response['username']);
+            localStorage.setItem("password",response['password']);
             alert("Welcome To Employee!");
             this.router.navigate(['/addlist']);
           },
