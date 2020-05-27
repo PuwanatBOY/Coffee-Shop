@@ -73,5 +73,15 @@ export class AddListComponent implements OnInit {
         error => {
           console.log(error);
         });
-  } 
+  }
+  
+  getUsername(){
+    let user = localStorage.getItem("username");
+    return user;
+  }
+
+  Logout(){
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+  }
 }
