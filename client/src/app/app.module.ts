@@ -10,13 +10,15 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistryComponent } from './component/registry/registry.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddListComponent } from './component/add-list/add-list.component';
+import { ProductListComponent } from './component/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistryComponent,
-    AddListComponent
+    AddListComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
