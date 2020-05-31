@@ -3,14 +3,14 @@ const Employee = db.employee;
 
 const student = [{
         idem: 1,
-        username: 'CPE',
+        emusername: 'CPE',
         password: '12345678',
         firstName: 'Puwanat',
         lastName: 'Torcheewee'
     },
     {
         idem: 2,
-        username: 'BOY',
+        emusername: 'BOY',
         password: '11111111',
         firstName: 'Kang',
         lastName: 'Krub'
@@ -22,7 +22,7 @@ exports.create = () => {
     for (let i = 0; i < student.length; i++) {
         const employee = new Employee({
             idem: student[i].idem,
-            username: student[i].username,
+            emusername: student[i].emusername,
             password: student[i].password,
             firstName: student[i].firstName,
             lastName: student[i].lastName

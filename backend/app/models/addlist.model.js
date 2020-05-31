@@ -1,6 +1,6 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema({
-        nameCargo: { type: String, unique: true },
+        nameCargo: { type: String, unique: true, required: true },
         type: { type: String, required: true },
         codeCargo: { type: String, required: true },
         quantity: { type: String, required: true },
@@ -26,6 +26,6 @@ module.exports = mongoose => {
         return object;
     });
 
-    const Register = mongoose.model("addlist", schema);
-    return Register;
+    const AddList = mongoose.model("addlists", schema);
+    return AddList;
 };

@@ -11,7 +11,7 @@ exports.create = (req, res) => {
 
     // Create a Register
     const register = new Register({
-        username: req.body.username,
+        usernameco: req.body.username,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         sex: req.body.sex,
