@@ -13,8 +13,7 @@
 1. npm install
 2. npm install bootstrap jquery popper.js
 3. npm install @angular/http
-4. ng add @fortawesome/angular-fontawesome
-5. npm install --save font-awesome
+4. npm install --save font-awesome
 
 #### backend
 1. npm i nodemon -g --save-dev
@@ -29,4 +28,4 @@ in CMD for start server MongoDB
 * **Start client**
   * **ng serve -o**
 * **Start backend**
-  * **node app.js**
+  * **nodemon app.js**
