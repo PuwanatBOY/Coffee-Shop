@@ -1,7 +1,7 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema({
         idem: { type: Number, unique: true },
-        username: { type: String, unique: true },
+        emusername: { type: String, unique: true },
         password: { type: String, required: true },
         firstName: { type: String, required: true, unique: true },
         lastName: { type: String, required: true, unique: true }

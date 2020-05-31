@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddListService } from 'src/app/service/add-list.service';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-list',
@@ -33,13 +34,24 @@ export class AddListComponent implements OnInit {
 
   
 
-  constructor(private addListService: AddListService) { }
+  constructor(private addListService: AddListService,private router: Router) { }
 
   submitted = false;
+  selected;
 
   ngOnInit(): void {
+    this.selected = 0;
   }
   get uploader(){ return this.addListService.uploader}
+
+  getAllProType(){
+    //console.log(this.addListService.getAllProType());
+    return this.addListService.getAllProType();
+  }
+
+  getAllProOS(){
+    return this.addListService.getAllProOS();
+  }
 
   saveDataList() {
     const data = {
@@ -83,5 +95,6 @@ export class AddListComponent implements OnInit {
   Logout(){
     localStorage.removeItem("username");
     localStorage.removeItem("password");
+    this.router.navigate(['/loginem']);
   }
 }

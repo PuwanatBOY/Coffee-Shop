@@ -1,6 +1,6 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema({
-        username: { type: String, unique: true },
+        usernameco: { type: String, unique: true },
         password: { type: String, required: true },
         firstName: { type: String, required: true, unique: true },
         lastName: { type: String, required: true, unique: true },
