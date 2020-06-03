@@ -1,21 +1,18 @@
 const db = require("../models");
 const AddList = db.addlist;
 
-// Create and Save a new Register
 exports.create = (req, res) => {
-    // Validate request
     if (!req.body.nameCargo) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
-
-    // Create a Register
     const addlist = new AddList({
         nameCargo: req.body.nameCargo,
         type: req.body.type,
         codeCargo: req.body.codeCargo,
         quantity: req.body.quantity,
         price: req.body.price,
+        image: req.body.image,
         produceDate: req.body.produceDate,
         typeOS: req.body.typeOS,
         size: req.body.size,
@@ -31,7 +28,6 @@ exports.create = (req, res) => {
         date: req.body.date
     });
 
-    // Save Register in the database
     addlist
         .save(addlist)
         .then(data => {
@@ -44,7 +40,6 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve all Register from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
