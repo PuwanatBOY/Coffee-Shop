@@ -14,6 +14,7 @@
 2. npm install bootstrap jquery popper.js
 3. npm install @angular/http
 4. npm install --save font-awesome
+5. npm i ng2-search-filter --save
 
 #### backend
 1. npm i nodemon -g --save-dev
