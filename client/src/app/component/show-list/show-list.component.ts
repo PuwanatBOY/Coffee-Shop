@@ -49,6 +49,7 @@ export class ShowListComponent implements OnInit {
   return this.alldata;
 }
 
+
 deleteProduct(nameProduct: any){
   console.log(nameProduct);
   this.addListService.delete(nameProduct)
