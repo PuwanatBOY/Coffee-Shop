@@ -5,6 +5,7 @@ module.exports = mongoose => {
         codeCargo: { type: String, required: true },
         quantity: { type: String, required: true },
         price: { type: String },
+        image: { type: String },
         produceDate: { type: String },
         typeOS: { type: String, required: true },
         size: { type: String, required: true },
@@ -20,11 +21,11 @@ module.exports = mongoose => {
         date: { type: Date, default: Date.now }
     }, { timestamps: true });
 
-    schema.method("toJSON", function() {
-        const { __v, _id, ...object } = this.toObject();
-        object.id = _id;
-        return object;
-    });
+    // schema.method("toJSON", function() {
+    //     const { __v, _id, ...object } = this.toObject();
+    //     object.id = _id;
+    //     return object;
+    // });
 
     const AddList = mongoose.model("addlists", schema);
     return AddList;

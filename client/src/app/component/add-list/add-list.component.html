@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/productlist">Phone-Shop</a>
+        <a class="navbar-brand">Phone-Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -12,14 +12,12 @@
                             work
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item">Apple</a>
-                        <a class="dropdown-item">Samsung</a>
-                        <a class="dropdown-item">Huawei</a>
+                        <a class="dropdown-item" href="/showlist">show product list</a>
                     </div>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <a class="btn btn-primary" role="button">
+                <a class="btn btn-info" role="button">
                     <i class="fa fa-user-secret" aria-hidden="true"></i>
                 </a>
                 <li class="nav-item">
@@ -28,7 +26,7 @@
             </ul>
         </div>
         <form class="ml-md-2 my-2 my-lg-0">
-            <a class="btn btn-primary" (click)="Logout()" role="button">Log Out</a>
+            <a class="btn btn-danger" (click)="Logout()" role="button">Log Out</a>
         </form>
     </div>
 </nav>
@@ -144,13 +142,19 @@
                     <input type="text" class="form-control" formControlName='price' placeholder="xx,xxx.xx" required>
                 </div>
             </div>
-
             <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="image">รูปสินค้า</label>
+                    <input type="text" class="form-control" formControlName='image' placeholder="http://...." required>
+                </div>
+            </div>
+
+            <!--div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                     <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload an Image</button>
                 </div>
-            </div>
+            </div-->
             <button class="btn btn-primary" (click)="saveDataList()" type="submit">Submit form</button>
         </form>
         <br/>

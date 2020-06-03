@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand">Phone-Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            work
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/addlist">Add new Product</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <a class="btn btn-info" role="button">
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                </a>
+                <li class="nav-item">
+                    <a class="nav-link" readonly>{{getUsername()}}</a>
+                </li>
+            </ul>
+        </div>
+        <form class="ml-md-2 my-2 my-lg-0">
+            <a class="btn btn btn-danger" (click)="Logout()" role="button">Log Out</a>
+        </form>
+    </div>
+</nav>
+<br>
+
+<div class="container">
+    <div class="form-row">
+        <div class="col-md-12 mb-3 form-inline">
+            <a class="btn" readonly>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-dark">
+    <thead>
+        <tr>
+            <th>ID.</th>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Type OS</th>
+            <th>Price (บาท)</th>
+            <th>Quantity (เครื่อง)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of (getAllData() | filter:term) index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>
+                <img [src]="item.image" class="mr-4" style="width: 100px">
+            </td>
+            <td>{{item.nameCargo}}</td>
+            <td>{{item.typeOS}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>

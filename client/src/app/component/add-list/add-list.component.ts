@@ -16,6 +16,7 @@ export class AddListComponent implements OnInit {
     codeCargo: new FormControl(''),
     quantity: new FormControl(''),
     price: new FormControl(''),
+    image: new FormControl(''),
     detail: new FormGroup({ 
       produceDate:new FormControl(''),
       typeOS: new FormControl(''),
@@ -30,6 +31,9 @@ export class AddListComponent implements OnInit {
       batt: new FormControl(''),
       twoSim: new FormControl('')
     })
+    // image: new FormArray([
+    //   new FormControl('')
+    // ])
   });
 
   
@@ -37,10 +41,9 @@ export class AddListComponent implements OnInit {
   constructor(private addListService: AddListService,private router: Router) { }
 
   submitted = false;
-  selected;
 
   ngOnInit(): void {
-    this.selected = 0;
+    console.log("Hello World");
   }
   get uploader(){ return this.addListService.uploader}
 
@@ -60,6 +63,7 @@ export class AddListComponent implements OnInit {
       codeCargo: this.dataList.value.codeCargo,
       quantity: this.dataList.value.quantity,
       price: this.dataList.value.price,
+      image: this.dataList.value.image,
       produceDate: this.dataList.value.detail.produceDate,
       typeOS: this.dataList.value.detail.typeOS,
       size: this.dataList.value.detail.size,
@@ -80,7 +84,8 @@ export class AddListComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
-          alert("เพิ่มสำเร็จ !")
+          alert("เพิ่มสำเร็จ !");
+          window.location.reload();
         },
         error => {
           console.log(error);
@@ -96,5 +101,18 @@ export class AddListComponent implements OnInit {
     localStorage.removeItem("username");
     localStorage.removeItem("password");
     this.router.navigate(['/loginem']);
+  }
+
+  getAllData(){
+    this.addListService.getAll()
+      .subscribe(
+        response => {
+          //console.log(response);
+          const alldata = response;
+          //console.log(alldata);
+        },
+        error => {
+          console.log(error);
+        });
   }
 }
