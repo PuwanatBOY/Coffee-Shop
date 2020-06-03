@@ -24,14 +24,21 @@ db.mongoose
         useCreateIndex: true
     })
     .then(() => {
+        getTheResult();
         console.log("Connected to the database!");
-        employee.deleteAll();
-        employee.create();
     })
     .catch(err => {
         console.log("Cannot connect to the database!", err);
         process.exit();
     });
+const getTheResult = async() => {
+    let auth = await employee.deleteAll();
+    //console.log(auth)
+    if (auth == true) {
+        const data = await employee.create();
+        console.log(data);
+    }
+}
 
 require("./app/routes/register.routes")(expressApp);
 require("./app/routes/addlist.routes")(expressApp);

@@ -4,12 +4,12 @@ import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegistryComponent } from './component/registry/registry.component';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddListComponent } from './component/add-list/add-list.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
 import { EmployeeLoginComponent } from './component/employee-login/employee-login.component';
@@ -31,9 +31,9 @@ import { ShowListComponent } from './component/show-list/show-list.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    //FontAwesomeModule,
     FileUploadModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

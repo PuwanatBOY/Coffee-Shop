@@ -59,8 +59,8 @@ export class AddListService {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id) {
-    return this.http.delete(`${baseUrl}/${id}`);
+  delete(nameProduct) {
+    return this.http.delete(`${baseUrl}/${nameProduct}`);
   }
 
   deleteAll() {

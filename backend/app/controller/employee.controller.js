@@ -18,7 +18,7 @@ const student = [{
 ];
 
 
-exports.create = () => {
+exports.create = (status) => {
     for (let i = 0; i < student.length; i++) {
         const employee = new Employee({
             idem: student[i].idem,
@@ -30,12 +30,16 @@ exports.create = () => {
         //console.log(employee);
         employee.save(employee);
     }
+
+    return ({ status: "ready" });
+
 };
 
 exports.deleteAll = () => {
     Employee.deleteMany({})
         .then(data => {})
         .catch(err => {});
+    return true;
 };
 
 exports.findEmployee = (req, res) => {
