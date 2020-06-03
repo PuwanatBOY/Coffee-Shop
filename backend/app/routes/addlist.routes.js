@@ -24,5 +24,7 @@ module.exports = app => {
     // Create a new Tutorial
     router.delete("/", addlist.deleteAll);
 
+    router.get("/:id", addlist.findId);
+
     app.use('/api/addlist', router);
 };
