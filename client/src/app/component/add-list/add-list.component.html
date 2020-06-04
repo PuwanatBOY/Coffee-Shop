@@ -142,20 +142,37 @@
                     <input type="text" class="form-control" formControlName='price' placeholder="xx,xxx.xx" required>
                 </div>
             </div>
-            <div class="form-row">
+            <!--div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="image">รูปสินค้า</label>
                     <input type="text" class="form-control" formControlName='image' placeholder="http://...." required>
                 </div>
+            </div-->
+            <div class="row">
+                <div class="col-md-1">
+                    รูปสินค้า
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" formControlName='file' accept="image/*" ngf-max-size="2MB" (change)="onChangeImg($event)">
+                    </div>
+                </div>
             </div>
 
-            <!--div class="form-row">
-                <div class="form-group col-md-6">
-                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-                    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload an Image</button>
+            <div class="row">
+                <div class="col-md-3">
+
                 </div>
-            </div-->
-            <button class="btn btn-primary" (click)="saveDataList()" type="submit">Submit form</button>
+                <div class="col-md-9">
+                    <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.dataList.value.img" style="height:150px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" (click)="saveDataList()">บันทึกข้อมูล</button>&nbsp;
+                    <button type="reset" class="btn btn-danger" (click)="resetForm()">ล้างข้อมูล</button>
+                </div>
+            </div>
         </form>
         <br/>
         <div class="card">

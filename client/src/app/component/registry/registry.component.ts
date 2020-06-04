@@ -61,6 +61,7 @@ export class RegistryComponent implements OnInit {
           console.log(response);
           this.submitted = true;
           alert("Save Success!")
+          this.registerForm.reset();
         },
         error => {
           console.log(error);
