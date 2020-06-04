@@ -16,7 +16,8 @@ export class AddListComponent implements OnInit {
     codeCargo: new FormControl(''),
     quantity: new FormControl(''),
     price: new FormControl(''),
-    image: new FormControl(''),
+    img: new FormControl(''),
+    file: new FormControl(''),
     detail: new FormGroup({ 
       produceDate:new FormControl(''),
       typeOS: new FormControl(''),
@@ -31,16 +32,14 @@ export class AddListComponent implements OnInit {
       batt: new FormControl(''),
       twoSim: new FormControl('')
     })
-    // image: new FormArray([
-    //   new FormControl('')
-    // ])
   });
-
+  previewLoaded: boolean = false;
   
 
   constructor(private addListService: AddListService,private router: Router) { }
 
   submitted = false;
+  image: File;
 
   ngOnInit(): void {
     console.log("Hello World");
@@ -63,7 +62,8 @@ export class AddListComponent implements OnInit {
       codeCargo: this.dataList.value.codeCargo,
       quantity: this.dataList.value.quantity,
       price: this.dataList.value.price,
-      image: this.dataList.value.image,
+      img: this.dataList.value.img,
+      file: this.dataList.value.file,
       produceDate: this.dataList.value.detail.produceDate,
       typeOS: this.dataList.value.detail.typeOS,
       size: this.dataList.value.detail.size,
@@ -76,7 +76,6 @@ export class AddListComponent implements OnInit {
       camBack: this.dataList.value.detail.camBack,
       batt: this.dataList.value.detail.batt,
       twoSim: this.dataList.value.detail.twoSim,
-
     };
     console.log(data);
     this.addListService.create(data)
@@ -85,7 +84,8 @@ export class AddListComponent implements OnInit {
           console.log(response);
           this.submitted = true;
           alert("เพิ่มสำเร็จ !");
-          window.location.reload();
+          //window.location.reload();
+          //this.dataList.reset();
         },
         error => {
           console.log(error);
@@ -93,13 +93,13 @@ export class AddListComponent implements OnInit {
   }
   
   getUsername(){
-    let user = localStorage.getItem("username");
+    let user = localStorage.getItem("Emusername");
     return user;
   }
 
   Logout(){
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
+    localStorage.removeItem("Emusername");
+    localStorage.removeItem("Empassword");
     this.router.navigate(['/loginem']);
   }
 
@@ -114,5 +114,30 @@ export class AddListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  onChangeImg(e: any){
+    if(e.target.files.length > 0){
+      this.image = e.target.files[0];
+      var pattern = /image-*/;
+      const reader = new FileReader();
+      if(!this.image.type.match(pattern)){
+        alert('invalid format');
+        this.dataList.reset();
+      }else{
+        reader.readAsDataURL(this.image);
+        reader.onload = () => {
+          this.previewLoaded = true;
+          this.dataList.patchValue({
+            img: reader.result
+          });
+        }
+      }
+    }
+  }
+
+  resetForm(){
+    this.dataList.reset();
+    this.previewLoaded = false;
   }
 }

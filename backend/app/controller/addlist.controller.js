@@ -6,13 +6,15 @@ exports.create = (req, res) => {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
+
     const addlist = new AddList({
         nameCargo: req.body.nameCargo,
         type: req.body.type,
         codeCargo: req.body.codeCargo,
         quantity: req.body.quantity,
         price: req.body.price,
-        image: req.body.image,
+        img: req.body.img,
+        file: req.body.file,
         produceDate: req.body.produceDate,
         typeOS: req.body.typeOS,
         size: req.body.size,
@@ -27,6 +29,8 @@ exports.create = (req, res) => {
         twoSim: req.body.twoSim,
         date: req.body.date
     });
+
+    console.log(addlist)
 
     addlist
         .save(addlist)
@@ -153,13 +157,13 @@ exports.findAllPublished = (req, res) => {
 
 exports.findId = (req, res) => {
     AddList.findById(req.params.id)
-    .exec(function(err, addList){
-        if(err){
-            console.log("Error retriveing item")
-            console.log(err)
-        }else{
-            res.json(addList)
-            console.log("retrieveing success")
-        }
-    })    
+        .exec(function(err, addList) {
+            if (err) {
+                console.log("Error retriveing item")
+                console.log(err)
+            } else {
+                res.json(addList)
+                console.log("retrieveing success")
+            }
+        })
 }
