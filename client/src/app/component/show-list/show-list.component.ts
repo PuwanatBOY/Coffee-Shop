@@ -12,23 +12,46 @@ import { Router} from '@angular/router';
 export class ShowListComponent implements OnInit {
   sts:number = 1;
   alldata: any;
+  product: any;
   term: string;
-  selectData = new FormGroup({
-    nameProduct: new FormControl('')
+  image: File;
+  previewLoaded: boolean = false;
+
+  dataLists = new FormGroup({
+    nameCargo: new FormControl(''),
+    quantity: new FormControl(''),
+    price: new FormControl(''),
+    img: new FormControl(''),
+    file: new FormControl(''),
+    detail: new FormGroup({ 
+      typeOS: new FormControl(''),
+      display: new FormControl(''),
+      rom: new FormControl(''),
+      externalDrive: new FormControl(''),
+      batt: new FormControl('')
+    })
   });
 
   constructor(private addListService: AddListService,private router: Router) {}
-  
+
+
+  getAllProType(){
+    return this.addListService.getAllProType();
+  }
+
+  getAllProOS(){
+    return this.addListService.getAllProOS();
+  }
 
   ngOnInit(): void {
   }
   getUsername(){
-    let user = localStorage.getItem("username");
+    let user = localStorage.getItem("Emusername");
     return user;
   }
   Logout(){
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
+    localStorage.removeItem("Emusername");
+    localStorage.removeItem("Empassword");
     this.router.navigate(['/loginem']);
   }
 
@@ -50,6 +73,7 @@ export class ShowListComponent implements OnInit {
 }
 
 
+
 deleteProduct(nameProduct: any){
   console.log(nameProduct);
   this.addListService.delete(nameProduct)
@@ -65,8 +89,65 @@ deleteProduct(nameProduct: any){
     );
 }
 
-updateProduct(nameProduct: any){
-  console.log(nameProduct);
+getSomeData(productId: any){
+  //console.log(productId);
+  this.addListService.get(productId)
+  .subscribe(
+    response => {
+      console.log(response);
+      this.product = response;
+    },
+    error => {
+      console.log(error);
+    });
+  this.dataLists.reset();
+}
+
+updateProduct(productId: any){
+  console.log(productId);
+  const data = {
+    nameCargo: this.dataLists.value.nameCargo,
+    quantity: this.dataLists.value.quantity,
+    price: this.dataLists.value.price,
+    img: this.dataLists.value.img,
+    file: this.dataLists.value.file,
+    typeOS: this.dataLists.value.detail.typeOS,
+    display: this.dataLists.value.detail.display,
+    rom: this.dataLists.value.detail.rom,
+    externalDrive: this.dataLists.value.detail.externalDrive,
+    batt: this.dataLists.value.detail.batt,
+  };
+  this.addListService.update(productId, data)
+    .subscribe(
+      response =>{
+        alert('update successful')
+        console.log(response);
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}
+
+onChangeImg(e: any){
+  if(e.target.files.length > 0){
+    this.image = e.target.files[0];
+    var pattern = /image-*/;
+    const reader = new FileReader();
+    if(!this.image.type.match(pattern)){
+      alert('invalid format');
+      this.dataLists.reset();
+    }else{
+      reader.readAsDataURL(this.image);
+      reader.onload = () => {
+        this.previewLoaded = true;
+        this.dataLists.patchValue({
+          img: reader.result
+        });
+      }
+    }
+  }
 }
 
 }
