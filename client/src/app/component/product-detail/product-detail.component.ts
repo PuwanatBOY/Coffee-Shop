@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { AddListService } from 'src/app/service/add-list.service';
+
 
 
 
@@ -15,7 +16,7 @@ export class ProductDetailComponent implements OnInit {
   product: any;
   id: string;
 
-  constructor(private route: ActivatedRoute,private addListService: AddListService) { }
+  constructor(private route: ActivatedRoute,private addListService: AddListService,private router: Router) { }
 
   ngOnInit(): void {
     this.getProductData()  
@@ -32,6 +33,9 @@ export class ProductDetailComponent implements OnInit {
       error => {
         console.log(error);
       });
+  }
+  Logout(){
+    this.router.navigate(['/home']);
   }
 
 }
