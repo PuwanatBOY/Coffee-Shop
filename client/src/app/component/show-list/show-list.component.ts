@@ -11,7 +11,6 @@ import { Router} from '@angular/router';
 })
 export class ShowListComponent implements OnInit {
   sts:number = 1;
-  alldata: any;
   product: any;
   term: string;
   image: File;
@@ -31,6 +30,8 @@ export class ShowListComponent implements OnInit {
       batt: new FormControl('')
     })
   });
+  
+  alldata: any;
 
   constructor(private addListService: AddListService,private router: Router) {}
 
@@ -44,6 +45,7 @@ export class ShowListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllData();
   }
   getUsername(){
     let user = localStorage.getItem("Emusername");
@@ -62,7 +64,8 @@ export class ShowListComponent implements OnInit {
         response => {
           console.log(response);
           this.alldata = response;
-          console.log(this.alldata);
+          console.log(this.alldata[0]._id);
+          this.getSomeData(this.alldata[0]._id);
         },
         error => {
           console.log(error);

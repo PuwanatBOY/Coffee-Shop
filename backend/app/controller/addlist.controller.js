@@ -39,7 +39,7 @@ exports.create = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the addlist."
+                message: err.message || "Some error occurred while creating the Product."
             });
         });
 };
@@ -54,12 +54,12 @@ exports.findAll = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving Register."
+                message: err.message || "Some error occurred while retrieving Product."
             });
         });
 };
 
-// Find a single Register with an id
+// Find a single Product with an id
 exports.findUsername = (req, res) => {
     const dataObj = {
             username: req.params.username.split(":"),
@@ -69,17 +69,17 @@ exports.findUsername = (req, res) => {
     AddList.find({ username: dataObj.username, password: dataObj.password })
         .then(data => {
             if (!data)
-                res.status(404).send({ message: "Not found Register with id " + id });
+                res.status(404).send({ message: "Not found Product with id " + id });
             else res.send({ username: dataObj.username, password: dataObj.password });
         })
         .catch(err => {
             res
                 .status(500)
-                .send({ message: "Error retrieving Register with id=" + id });
+                .send({ message: "Error retrieving Product with id=" + id });
         });
 };
 
-// Update a Register by the id in the request
+// Update a Product by the id in the request
 exports.update = (req, res) => {
     if (!req.body) {
         return res.status(400).send({
@@ -93,18 +93,18 @@ exports.update = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot update Register with id=${id}. Maybe Register was not found!`
+                    message: `Cannot update Product with id=${id}. Maybe Product was not found!`
                 });
-            } else res.send({ message: "Register was updated successfully." });
+            } else res.send({ message: "Product was updated successfully." });
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Register with id=" + id
+                message: "Error updating Product with id=" + id
             });
         });
 };
 
-// Delete a Register with the specified id in the request
+// Delete a Product with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
     console.log(id);
@@ -112,45 +112,32 @@ exports.delete = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Register with id=${id}. Maybe Register was not found!`
+                    message: `Cannot delete Product with id=${id}. Maybe Product was not found!`
                 });
             } else {
                 res.send({
-                    message: "Register was deleted successfully!"
+                    message: "Product was deleted successfully!"
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Register with id=" + id
+                message: "Could not delete Product with id=" + id
             });
         });
 };
 
-// Delete all Register from the database.
+// Delete all Product from the database.
 exports.deleteAll = (req, res) => {
     AddList.deleteMany({})
         .then(data => {
             res.send({
-                message: `${data.deletedCount} Register were deleted successfully!`
+                message: `${data.deletedCount} Product were deleted successfully!`
             });
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while removing all Register."
-            });
-        });
-};
-
-// Find all published Register
-exports.findAllPublished = (req, res) => {
-    AddList.find({ published: true })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving Register."
+                message: err.message || "Some error occurred while removing all Product."
             });
         });
 };
