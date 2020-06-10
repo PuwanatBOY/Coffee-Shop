@@ -7,5 +7,8 @@ module.exports = app => {
 
     router.get("/", cart.findAll);
 
+    router.get("/:user", cart.findCartUser)
+
     app.use('/api/cart', router);
+
 }
