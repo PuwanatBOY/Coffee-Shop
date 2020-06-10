@@ -51,6 +51,7 @@ const getTheResult = async() => {
 require("./app/routes/register.routes")(expressApp);
 require("./app/routes/addlist.routes")(expressApp);
 require("./app/routes/employee.routes")(expressApp);
+require("./app/routes/cart.routes")(expressApp);
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');
 });
