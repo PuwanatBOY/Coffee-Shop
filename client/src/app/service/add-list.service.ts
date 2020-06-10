@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FileUploader} from 'ng2-file-upload';
 
 const baseUrl = 'http://localhost:3000/api/addlist';
 
@@ -9,7 +8,6 @@ const baseUrl = 'http://localhost:3000/api/addlist';
 })
 export class AddListService {
 
-  public uploader: FileUploader = new FileUploader({ url: baseUrl, itemAlias: 'photo' });
 
   t_id: number
   t_name: string
@@ -43,8 +41,10 @@ export class AddListService {
     return this.os_pro;
   }
 
-  getAll() {
-    return this.http.get(baseUrl);
+  getAll(token: any) {
+    //console.log(token);
+    const headers = {'Authorization': token}
+    return this.http.get(baseUrl ,{headers});
   }
 
   get(id) {
@@ -68,15 +68,8 @@ export class AddListService {
   }
 
   findByUser(username, password) {
-    console.log(username+", "+password);
+    //console.log(username+", "+password);
     return this.http.get(`${baseUrl}/${username}/${password}`);
   }
 
-  uploadImage(){
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         alert('File uploaded successfully');
-    }
-  }
 }

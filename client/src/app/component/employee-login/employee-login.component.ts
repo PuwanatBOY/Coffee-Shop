@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { LocalStorageService } from 'angular-web-storage';
 
 const baseUrl = 'http://localhost:3000/api/employee';
 
@@ -13,13 +14,14 @@ const baseUrl = 'http://localhost:3000/api/employee';
 export class EmployeeLoginComponent implements OnInit {
 
   loginPass: Boolean = false;
+  dataEmploy: any;
 
   dataLoginEm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router, public local: LocalStorageService) { }
 
   ngOnInit(): void {
   }
@@ -35,20 +37,20 @@ export class EmployeeLoginComponent implements OnInit {
           response => {
             console.log(response);
             this.loginPass = true;
-            localStorage.setItem("Emusername",response['username']);
-            localStorage.setItem("Empassword",response['password']);
+            this.dataEmploy = response;
+            this.local.set('employee',this.dataEmploy,1,'w');
+            //console.log(this.local.get('employee').token);
+            // localStorage.setItem("Emusername",this.dataEmploy.result.username);
+            // localStorage.setItem("Empassword",this.dataEmploy.result.password);
             alert("Welcome To Employee!");
             this.router.navigate(['/addlist']);
           },
           error => {
             console.log(error);
           });
-  }
+    }
   }
 
-  get(id) {
-    //return this.http.get(`${baseUrl}/${id}`);
-  }
 
 
 }

@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all Tutorials
     router.get("/", addlist.findAll);
 
-    // Retrieve a single Tutorial with id
-    router.get("/:username/:password", addlist.findUsername);
-
     // Update a Tutorial with id
     router.put("/:id", addlist.update);
 

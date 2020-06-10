@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/service/register.service';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router} from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,14 @@ export class LoginComponent implements OnInit {
 
   googleUrl: string;
   facebookUrl: string;
+  dataUser: any;
 
   dataLogin = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private registerService: RegisterService, private router: Router) { }
+  constructor(private registerService: RegisterService, private router: Router, public local: LocalStorageService) { }
 
   loginPass: Boolean = false;
 
@@ -34,18 +36,22 @@ export class LoginComponent implements OnInit {
   Login() {
     const data = {
       password: this.dataLogin.value.password,
-      username: this.dataLogin.value.username,
+      username: this.dataLogin.value.username
     };
     if(data.password !== '' && data.username !== '') {
       this.registerService.findByUser(data.username, data.password)
         .subscribe(
           response => {
-            console.log(response);
-            localStorage.setItem("username",response['username']);
-            localStorage.setItem("password",response['password']);
-            this.loginPass = true;
-            alert("i see!");
-            this.router.navigate(['/productlist']);
+              console.log(response);
+              this.dataUser = response;
+              if(this.dataUser.status == true){
+                this.local.set('customer',this.dataUser,1,'w');
+              // localStorage.setItem("username",this.dataUser.result.username);
+              // localStorage.setItem("password",this.dataUser.result.password);
+                this.loginPass = true;
+                alert("i see!");
+                this.router.navigate(['/productlist']);
+            }
           },
           error => {
             console.log(error);

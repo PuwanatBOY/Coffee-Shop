@@ -1,12 +1,13 @@
 const db = require("../models");
 const AddList = db.addlist;
+const jwt = require('jsonwebtoken')
+const key = 'MY_KEY';
 
 exports.create = (req, res) => {
     if (!req.body.nameCargo) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
-
     const addlist = new AddList({
         nameCargo: req.body.nameCargo,
         type: req.body.type,
@@ -30,7 +31,7 @@ exports.create = (req, res) => {
         date: req.body.date
     });
 
-    console.log(addlist)
+    //console.log(addlist)
 
     addlist
         .save(addlist)
@@ -45,39 +46,36 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-
-    AddList.find(condition)
-        .then(data => {
-            res.send(data);
+    const token = req.headers['authorization'];
+    //console.log(token);
+    if (token === undefined) {
+        return res.status(401).json({
+            "status": 401,
+            "message": 'Unauthorized'
         })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving Product."
-            });
-        });
+    } else {
+        jwt.verify(token, key, (err, decode) => {
+            if (err) {
+                return res.status(401).json({
+                    "status": 401,
+                    "message": 'Unauthorizedd'
+                })
+            } else {
+                //console.log(decode)
+                AddList.find({})
+                    .then(data => {
+                        res.send(data);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while retrieving Product."
+                        });
+                    });
+            }
+        })
+    }
 };
 
-// Find a single Product with an id
-exports.findUsername = (req, res) => {
-    const dataObj = {
-            username: req.params.username.split(":"),
-            password: req.params.password.split(":")
-        }
-        //console.log("Here " + dataObj.username + ", " + dataObj.password);
-    AddList.find({ username: dataObj.username, password: dataObj.password })
-        .then(data => {
-            if (!data)
-                res.status(404).send({ message: "Not found Product with id " + id });
-            else res.send({ username: dataObj.username, password: dataObj.password });
-        })
-        .catch(err => {
-            res
-                .status(500)
-                .send({ message: "Error retrieving Product with id=" + id });
-        });
-};
 
 // Update a Product by the id in the request
 exports.update = (req, res) => {

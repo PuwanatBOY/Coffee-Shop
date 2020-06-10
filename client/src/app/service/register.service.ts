@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 const baseUrl = 'http://localhost:3000/api/register';
+const baseUrLogin = 'http://localhost:3000/api/register/login';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,10 @@ export class RegisterService {
     console.log(username+", "+password);
     return this.http.get(`${baseUrl}/${username}/${password}`);
   }
+
+  // findByUser(data) {
+  //   //console.log(username+", "+password);
+  //   console.log(data);
+  //   return this.http.get(baseUrLogin, data);
+  // }
 }
