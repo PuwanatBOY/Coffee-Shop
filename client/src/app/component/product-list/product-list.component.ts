@@ -43,4 +43,10 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   
+  getUsername(){
+    //let user = localStorage.getItem("Emusername");
+    let user = this.local.get('customer').result.username;
+    return user;
+  }
+  
 }

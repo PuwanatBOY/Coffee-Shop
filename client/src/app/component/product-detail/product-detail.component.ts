@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { AddListService } from 'src/app/service/add-list.service';
-
+import { LocalStorageService } from 'angular-web-storage';
 
 
 
@@ -16,7 +16,7 @@ export class ProductDetailComponent implements OnInit {
   product: any;
   id: string;
 
-  constructor(private route: ActivatedRoute,private addListService: AddListService,private router: Router) { }
+  constructor(private route: ActivatedRoute,private addListService: AddListService,private router: Router,public local: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getProductData()  
@@ -36,6 +36,11 @@ export class ProductDetailComponent implements OnInit {
   }
   Logout(){
     this.router.navigate(['/home']);
+  }
+  getUsername(){
+    //let user = localStorage.getItem("Emusername");
+    let user = this.local.get('customer').result.username;
+    return user;
   }
 
 }

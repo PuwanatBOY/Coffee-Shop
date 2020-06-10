@@ -40,3 +40,16 @@ exports.findAll = (req, res) => {
             });
         });
 };
+exports.findCartUser = (req, res) => {
+    var user = req.params.user;
+    Cart.find({usernameco : user})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "No item in your cart"
+            });
+        });
+    
+}
