@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddListService } from 'src/app/service/add-list.service';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-add-list',
@@ -36,15 +37,13 @@ export class AddListComponent implements OnInit {
   previewLoaded: boolean = false;
   
 
-  constructor(private addListService: AddListService,private router: Router) { }
+  constructor(private addListService: AddListService,private router: Router, public local: LocalStorageService) { }
 
   submitted = false;
   image: File;
 
   ngOnInit(): void {
-    console.log("Hello World");
   }
-  get uploader(){ return this.addListService.uploader}
 
   getAllProType(){
     //console.log(this.addListService.getAllProType());
@@ -93,28 +92,18 @@ export class AddListComponent implements OnInit {
   }
   
   getUsername(){
-    let user = localStorage.getItem("Emusername");
+    //let user = localStorage.getItem("Emusername");
+    let user = this.local.get('employee').result.username;
     return user;
   }
 
   Logout(){
-    localStorage.removeItem("Emusername");
-    localStorage.removeItem("Empassword");
+    // localStorage.removeItem("Emusername");
+    // localStorage.removeItem("Empassword");
+    this.local.remove('employee');
     this.router.navigate(['/loginem']);
   }
 
-  getAllData(){
-    this.addListService.getAll()
-      .subscribe(
-        response => {
-          //console.log(response);
-          const alldata = response;
-          //console.log(alldata);
-        },
-        error => {
-          console.log(error);
-        });
-  }
 
   onChangeImg(e: any){
     if(e.target.files.length > 0){

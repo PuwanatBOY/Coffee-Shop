@@ -2,6 +2,7 @@ import { Component, OnInit,PipeTransform } from '@angular/core';
 import { AddListService } from 'src/app/service/add-list.service';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class ShowListComponent implements OnInit {
   product: any;
   term: string;
   image: File;
+  token: string;
+  alldata: any
   previewLoaded: boolean = false;
 
   dataLists = new FormGroup({
@@ -30,10 +33,9 @@ export class ShowListComponent implements OnInit {
       batt: new FormControl('')
     })
   });
-  
-  alldata: any;
+  ;
 
-  constructor(private addListService: AddListService,private router: Router) {}
+  constructor(private addListService: AddListService,private router: Router, public local: LocalStorageService) {}
 
 
   getAllProType(){
@@ -48,18 +50,21 @@ export class ShowListComponent implements OnInit {
     this.getAllData();
   }
   getUsername(){
-    let user = localStorage.getItem("Emusername");
+    //let user = localStorage.getItem("Emusername");
+    let user = this.local.get('employee').result.username;
     return user;
   }
   Logout(){
-    localStorage.removeItem("Emusername");
-    localStorage.removeItem("Empassword");
+    // localStorage.removeItem("Emusername");
+    // localStorage.removeItem("Empassword");
+    this.local.remove('employee');
     this.router.navigate(['/loginem']);
   }
 
   getAllData(){
+    this.token = this.local.get('employee').token;
     if(this.sts == 1){
-    this.addListService.getAll()
+    this.addListService.getAll(this.token)
       .subscribe(
         response => {
           console.log(response);

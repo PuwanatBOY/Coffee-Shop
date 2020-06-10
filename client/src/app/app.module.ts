@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
-import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -33,7 +32,6 @@ import { ProductDetailComponent } from './component/product-detail/product-detai
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FileUploadModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule
   ],
