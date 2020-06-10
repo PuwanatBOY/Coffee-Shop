@@ -14,6 +14,7 @@ import { ProductListComponent } from './component/product-list/product-list.comp
 import { EmployeeLoginComponent } from './component/employee-login/employee-login.component';
 import { ShowListComponent } from './component/show-list/show-list.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
+import { OrderHistoryComponent } from './component/order-history/order-history.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductDetailComponent } from './component/product-detail/product-detai
     ProductListComponent,
     EmployeeLoginComponent,
     ShowListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
