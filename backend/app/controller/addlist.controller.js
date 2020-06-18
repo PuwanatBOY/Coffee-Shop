@@ -125,30 +125,16 @@ exports.delete = (req, res) => {
         });
 };
 
-// Delete all Product from the database.
-exports.deleteAll = (req, res) => {
-    AddList.deleteMany({})
-        .then(data => {
-            res.send({
-                message: `${data.deletedCount} Product were deleted successfully!`
-            });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while removing all Product."
-            });
-        });
-};
-
 exports.findId = (req, res) => {
     AddList.findById(req.params.id)
         .exec(function(err, addList) {
             if (err) {
-                console.log("Error retriveing item")
-                console.log(err)
+                //console.log("Error retriveing item")
+                //console.log(err)
+                res.status(404).send(err)
             } else {
                 res.json(addList)
-                console.log("retrieveing success")
+                    //console.log("retrieveing success")
             }
         })
 }

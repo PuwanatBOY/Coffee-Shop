@@ -11,7 +11,10 @@ exports.create = (req, res) => {
         nameCargo: req.body.nameCargo,
         img: req.body.img,
         price: req.body.price,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        file: req.body.file,
+        productId: req.body.productId
+
     });
 
     cart
@@ -42,7 +45,7 @@ exports.findAll = (req, res) => {
 };
 exports.findCartUser = (req, res) => {
     var user = req.params.user;
-    Cart.find({usernameco : user})
+    Cart.find({ usernameco: user })
         .then(data => {
             res.send(data);
         })
@@ -51,5 +54,27 @@ exports.findCartUser = (req, res) => {
                 message: err.message || "No item in your cart"
             });
         });
-    
-}
+};
+
+//ลบสินค้าในตระกร้า
+exports.delete = (req, res) => {
+    const id = req.params.id;
+    //console.log(id);
+    Cart.findByIdAndRemove(id)
+        .then(data => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot delete Product with id=${id}. Maybe Product was not found!`
+                });
+            } else {
+                res.send({
+                    message: "Product was deleted successfully!"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Product with id=" + id
+            });
+        });
+};

@@ -1,0 +1,117 @@
+<app-em-navbar></app-em-navbar>
+<div class="container-fluid p-3 mb-2 bg-light">
+    <div class="card mx-auto" style="max-width: 50%; margin-top: 10px;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <span style="font-size: 20px;"><b>ชื่อผู้สั่งซื้อสินค้า : {{user}}</b> </span>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    ยืนยันคำสั่งซื้อหมายเลข : <b>{{orId}}</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="font-size: 90%;">
+                    วันที่สั่งซื้อ : วันที่ {{ date | date: "dd/MM/yyyy" }} เวลา
+                    {{ date | date: "HH:mm:ss" }} น.
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <img [src]="image" style="height: 150px;" />
+                </div>
+                <div class="col-md-4">
+                    ชื่อสินค้า : <b>{{nameCargo}}</b>
+                    <br>
+                    จำนวนสินค้า <b>{{quantity}}</b> เครื่อง
+                    <br>
+                    สถานะ : <b>{{status}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-auto" style="max-width: 50%; margin-top: 10px;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            ที่อยู่ในการจัดส่ง
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <i class="fa fa-home fa-2x" style="color: tomato;" aria-hidden="true"></i><b>{{address}}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            สรุปยอดรวมทั้งสิ้น
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            ค่าสินค้า
+                        </div>
+                        <div class="col text-right">
+                            ฿ {{price | number}} Bath
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            จำนวนสินค้า
+                        </div>
+                        <div class="col text-right">
+                            {{quantity}} เครื่อง
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            ยอมรวมทั้งสิ้น
+                        </div>
+                        <div class="col text-right">
+                            <span class="text-danger" style="font-weight: bold; font-size: 20px;">฿ {{total | number}}
+                                Bath</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col mx-auto" style="max-width: 50%;">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-sm-2 text-right">
+                        <button type="button" class="btn btn-secondary">
+                            ยกเลิก
+                        </button>
+                    </div>
+                    <div class="col-sm-1.5 text-right" *ngIf="checkWaitConfirm(status)">
+                        <button type="button" class="btn btn-success" (click)="updateProduct1()">
+                            ยืนยันคำสั่งซื้อ
+                        </button>
+                    </div>
+                    <div class="col-sm-1.5 text-right" *ngIf="checkPakage(status)">
+                        <button type="button" class="btn btn-primary" (click)="updateProduct2()">
+                            ที่ต้องได้รับสินค้า
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

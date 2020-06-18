@@ -24,7 +24,6 @@ const makeHash = async(plainText) => {
     return result;
 }
 
-// Create and Save a new Register
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.username) {
@@ -57,7 +56,8 @@ exports.create = (req, res) => {
                 })
                 .catch(err => {
                     res.status(500).send({
-                        message: err.message || "Some error occurred while creating the Register."
+                        message: err.message || "Some error occurred while creating the Register.",
+                        status: true
                     });
                 });
         })
@@ -68,38 +68,33 @@ exports.create = (req, res) => {
         })
 };
 
-// Retrieve all Register from the database.
-exports.findAll = (req, res) => {
-    const title = req.query.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-
-    Register.find(condition)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving Register."
-            });
-        });
-};
-
 const findUser = (username) => {
-        return new Promise((resolve, reject) => {
-            Register.findOne({ usernameco: username }, (err, data) => {
-                if (err) {
-                    reject(new Error('Cannot find username!'));
+    return new Promise((resolve, reject) => {
+        Register.findOne({ usernameco: username }, (err, data) => {
+            if (err) {
+                reject(new Error('Cannot find username!'));
+            } else {
+                if (data) {
+                    resolve({
+                        id: data._id,
+                        username: data.usernameco,
+                        password: data.password,
+                        email: data.email,
+                        tel: data.tel,
+                        Hnum: data.Hnum,
+                        province: data.province,
+                        district: data.district,
+                        parish: data.parish,
+                        zip: data.zip
+                    })
                 } else {
-                    if (data) {
-                        resolve({ id: data._id, username: data.usernameco, password: data.password })
-                    } else {
-                        reject(new Error('Cannot fond username!'));
-                    }
+                    reject(new Error('Cannot fond username!'));
                 }
-            })
+            }
         })
-    }
-    // Find a single Register with an id
+    })
+}
+
 exports.findUsername = async(req, res) => {
     const dataObj = {
             username: req.params.username.split(':'),
@@ -125,50 +120,30 @@ exports.findUsername = async(req, res) => {
     }
 };
 
-// Update a Register by the id in the request
-exports.update = (req, res) => {
-    if (!req.body) {
-        return res.status(400).send({
-            message: "Data to update can not be empty!"
-        });
-    }
-
-    const id = req.params.id;
-
-    Register.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot update Register with id=${id}. Maybe Register was not found!`
-                });
-            } else res.send({ message: "Register was updated successfully." });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error updating Register with id=" + id
-            });
-        });
-};
-
-// Delete a Register with the specified id in the request
-exports.delete = (req, res) => {
-    const id = req.params.id;
-
-    Register.findByIdAndRemove(id)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete Register with id=${id}. Maybe Register was not found!`
-                });
+exports.findIdCustomer = async(req, res) => {
+    Register.findById(req.params.id)
+        .exec(function(err, data) {
+            if (err) {
+                console.log(err)
             } else {
-                res.send({
-                    message: "Register was deleted successfully!"
-                });
+                res.json(data)
             }
         })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete Register with id=" + id
-            });
-        });
+}
+
+exports.getUser = async(req, res) => {
+    const dataObj = {
+        username: req.params.username.split(':')
+    }
+    Register.findOne({ usernameco: dataObj.username }, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (data == null) {
+                res.json({ status: false })
+            } else {
+                res.json({ status: true })
+            }
+        }
+    });
 };

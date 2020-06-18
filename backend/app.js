@@ -5,23 +5,15 @@ const cors = require("cors");
 const employee = require("./app/controller/employee.controller.js");
 
 var corsOptions = {
-    origin: "http://localhost:4200"
+    origin: "http://209.97.163.81:4200"
 };
 
 
 expressApp.use(cors(corsOptions));
 
-
 expressApp.use(bodyParser.json());
 
 expressApp.use(bodyParser.urlencoded({ extended: true }));
-
-// expressApp.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Options, Authorization')
-//     return next();
-// });
 
 const db = require("./app/models");
 db.mongoose
@@ -40,9 +32,9 @@ db.mongoose
     });
 
 const getTheResult = async() => {
-    let auth = await employee.deleteAll();
-    //console.log(auth)
-    if (auth == true) {
+    const auth = await employee.deleteAll();
+    console.log(auth)
+    if (auth.status == true) {
         const data = await employee.create();
         console.log(data);
     }
@@ -52,6 +44,8 @@ require("./app/routes/register.routes")(expressApp);
 require("./app/routes/addlist.routes")(expressApp);
 require("./app/routes/employee.routes")(expressApp);
 require("./app/routes/cart.routes")(expressApp);
+require("./app/routes/orderStatus.routes")(expressApp);
+require("./app/routes/orderHistory.routes")(expressApp);
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');
 });

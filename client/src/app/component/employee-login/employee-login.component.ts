@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'angular-web-storage';
+import Swal from 'sweetalert2'
 
-const baseUrl = 'http://localhost:3000/api/employee';
+const baseUrl = 'http://209.97.163.81:3000/api/employee';
 
 @Component({
   selector: 'app-employee-login',
@@ -17,9 +18,17 @@ export class EmployeeLoginComponent implements OnInit {
   dataEmploy: any;
 
   dataLoginEm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required])
   });
+
+  getUsername(){
+    let user = this.local.get('employee').result.username;
+    return user;
+  }
+
+  get username(){ return this.dataLoginEm.get('username'); }
+  get password(){ return this.dataLoginEm.get('password'); }
 
   constructor(private http: HttpClient,private router: Router, public local: LocalStorageService) { }
 
@@ -42,7 +51,12 @@ export class EmployeeLoginComponent implements OnInit {
             //console.log(this.local.get('employee').token);
             // localStorage.setItem("Emusername",this.dataEmploy.result.username);
             // localStorage.setItem("Empassword",this.dataEmploy.result.password);
-            alert("Welcome To Employee!");
+            //alert("Welcome To Employee!");
+            Swal.fire({
+              icon: 'success',
+              title: 'Wow!...',
+              html:`<a>เข้าสู่ระบบสำเร็จ ยินดีต้อนรับคุณ <u><i><b style="color:red">${this.getUsername()}</b></i></u><a>`
+            })
             this.router.navigate(['/addlist']);
           },
           error => {
