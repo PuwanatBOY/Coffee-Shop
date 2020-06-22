@@ -1,10 +1,12 @@
 version: '2'
 
-services:
-  client:
-      build: ./client
-      ports: 
-        - 4200:80/tcp
+services: 
+
+  client: 
+    build: ./client   
+    ports:
+            - 4200:80/tcp
+    
 
   backend:
         build: ./backend
